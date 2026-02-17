@@ -67,11 +67,79 @@ def suppress_errors(*exception_types):
 
 
 def log_processes(filename="processes_snapshot.log"):
-    pass
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            # 1. Execute the decorated function
+            processes = func(*args, **kwargs)
+            
+            try:
+                # 2. Open file in write mode
+                with open(filename, "w", encoding="utf-8") as f:
+                    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    f.write(f"{timestamp} - {len(processes)} processes\n")
+                    f.write("=" * 120 + "\n")
+                    
+                    # Header
+                    header = (
+                        f"{'PID':<6} {'Name':<25} {'User':<15} {'CPU%':<6} "
+                        f"{'Mem%':<6} {'Phys Mem(MB)':<14} {'Exe':<30} {'Cmdline'}\n"
+                    )
+                    f.write(header)
+                    f.write("-" * 120 + "\n")
+                    
+                    # Process Rows
+                    for proc in processes:
+                        pid = str(proc.get('pid', ''))
+                        name = str(proc.get('name', ''))
+                        user = str(proc.get('username', ''))
+                        cpu = f"{proc.get('cpu_percent', 0):.2f}"
+                        mem = f"{proc.get('memory_percent', 0):.2f}"
+                        
+                        phys_bytes = proc.get('phys_mem', 0)
+                        phys_mb = f"{(phys_bytes / (1024**2)):.2f}"
+                        
+                        exe = str(proc.get('exe', '')) or "-"
+                        
+                        cmd_list = proc.get('cmdline')
+                        cmd = " ".join(cmd_list) if cmd_list else ""
+                        
+                        line = (
+                            f"{pid:<6} {name:<25} {user:<15} {cpu:<6} "
+                            f"{mem:<6} {phys_mb:<14} {exe:<30} {cmd}\n"
+                        )
+                        f.write(line)
+                        
+                print(f"[!] Process information logged to {filename}")
+                
+            except IOError as e:
+                print(f"[Error] Could not write to log file: {e}")
+            
+            # 3. Return original process list
+            return processes
+        return wrapper
+    return decorator
 
 
 def filter_by_current_user(func):
-    pass
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        processes = func(*args, **kwargs)
+        current_user = getpass.getuser()
+        original_count = len(processes)
+        
+        print(f"[Filtering] getting only processes for user: {current_user}")
+        
+        filtered_processes = []
+        for proc in processes:
+            proc_user = proc.get('username')
+            if proc_user and current_user in proc_user:
+                filtered_processes.append(proc)
+                
+        print(f"[Filtering] Filtered from {original_count} to {len(filtered_processes)} processes")
+        return filtered_processes
+        
+    return wrapper
 
 
 def sort_processes(field="cpu_percent", reverse=True):

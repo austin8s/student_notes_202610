@@ -1,0 +1,10 @@
+[project]
+name = "wk03-lab01-process-snapshot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "psutil>=7.2.1",
+    "pytest>=9.0.2",
+]

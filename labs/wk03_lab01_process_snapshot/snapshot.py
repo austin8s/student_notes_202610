@@ -9,13 +9,17 @@ import psutil
 from decorators import (
     filter_by_current_user,
     log_processes,
+    max_listing,
     sort_processes,
     suppress_errors,
 )
 
 LOG_FILE: Final[str] = "process_snapshot.log"
 
-
+@log_processes(LOG_FILE)                   
+@max_listing(15)                          
+@sort_processes("phys_mem", reverse=True)  
+@filter_by_current_user
 @suppress_errors(
     psutil.ZombieProcess, PermissionError, psutil.AccessDenied, psutil.NoSuchProcess
 )
