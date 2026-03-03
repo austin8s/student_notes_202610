@@ -184,3 +184,36 @@ and labs
 1. [Encapsulation: Getters and Setters](https://learning.oreilly.com/videos/python-object-oriented/9781837638765/9781837638765-video4_2/)
 1. [Encapsulation: Methods as Attributes](https://learning.oreilly.com/videos/python-object-oriented/9781837638765/9781837638765-video4_3/)
 
+## Week 07
+
+Review
+
+## Week 08 
+
+Mid-term
+
+## Week 09
+
+### Object Orientation
+
+### Notes
+
+1. [Object Oriented Python](notes/090_oop_python_intro.md)
+1. [Documenting Classes: UML](notes/091_uml.md)
+
+### Exercises
+
+1. [WK09EX01 Introduction to Object Orientation](./exercises/wk09_ex01_oo_intro/intro_oo.md)
+1. [WK09EX02 Object Oriented Programming: Blackjack](./exercises/wk09_ex02_blackjack/README.md)
+
+### Lab
+1. wk09lab01: Network Host:
+   1. [ Set A wk09lab01](https://classroom.github.com/a/KM6dGwEJ)
+   1. [ Set B wk09lab01](https://classroom.github.com/a/A_f4Omlq)
+   1. [ Set C wk09lab01](https://classroom.github.com/a/zwk1pSKn)
+
+### Flipped
+
+1. [Iheritence and Composition: A Python OOP Guide](https://realpython.com/inheritance-composition-python/)
+1. [Pytest Fixtures: Monkeypatch](https://learning.oreilly.com/library/view/python-testing-with/9781680509427/f_0047.xhtml#ch.builtin_fixtures)
+
