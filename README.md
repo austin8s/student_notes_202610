@@ -198,8 +198,8 @@ Mid-term
 
 ### Notes
 
-1. [Object Oriented Python](notes/090_oop_python_intro.md)
-1. [Documenting Classes: UML](notes/091_uml.md)
+1. [Object Oriented Python](./notes/090_oop_python_intro.md)
+1. [Documenting Classes: UML](./notes/091_uml.md)
 
 ### Exercises
 
