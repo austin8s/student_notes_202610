@@ -127,21 +127,20 @@ and labs
 1. [`pytest` Fixtures](notes/041_pytest_fixtures.md)
 1. [Lab: `pytest` Fixtures](labs/wk04_lab01_pytest_fixtures/intro_pytest_fixtures.md)
    1. Set C Submissions: https://classroom.github.com/a/vM4w7g-P
-   1. Set B Submissions: https://classroom.github.com/a/O5GHbXUg 
-
+   1. Set B Submissions: https://classroom.github.com/a/O5GHbXUg
 
 ### References
 
 1. [Getting Started with Pytest](https://learning.oreilly.com/library/view/python-testing-with/9781680509427/f_0013.xhtml#ch.getting_started)]
 2. [Writing Test Functions](https://learning.oreilly.com/library/view/python-testing-with/9781680509427/f_0019.xhtml#ch.test_functions)
-1. [Pytest Fixtures](https://learning.oreilly.com/library/view/python-testing-with/9781680509427/f_0032.xhtml#ch.fixtures)
-1. [Pytest Builtin-Fixtures](https://learning.oreilly.com/library/view/python-testing-with/9781680509427/f_0047.xhtml#ch.builtin_fixtures)
+3. [Pytest Fixtures](https://learning.oreilly.com/library/view/python-testing-with/9781680509427/f_0032.xhtml#ch.fixtures)
+4. [Pytest Builtin-Fixtures](https://learning.oreilly.com/library/view/python-testing-with/9781680509427/f_0047.xhtml#ch.builtin_fixtures)
 
 ### Flipped
 
 1. [Python Exceptions: An Introduction](https://realpython.com/python-exceptions/)
-1. [Python `with` Statement](https://realpython.com/python-with-statement/) - up to Summarizing with statements advantages.
-
+1. [Python `with` Statement](https://realpython.com/python-with-statement/) - up
+   to Summarizing with statements advantages.
 
 ## Week 06
 
@@ -156,7 +155,8 @@ and labs
 
 1. [`exceptions_intro.py`](./demos/exceptions/exceptions_intro.py)
 1. [`basic_exceptions.py`](./demos/exceptions/basic_exceptions.py)
-1. [`checkin.py`](./demos/exceptions/checkin.py) Simple App With Exception Handling
+1. [`checkin.py`](./demos/exceptions/checkin.py) Simple App With Exception
+   Handling
 
 #### Lab
 
@@ -169,7 +169,7 @@ and labs
 
 1. [Builtin Exceptions](https://docs.python.org/3/library/exceptions.html)
 
-### Flipped 
+### Flipped
 
 #### OO Introduction and Review: Video
 
@@ -188,7 +188,7 @@ and labs
 
 Review
 
-## Week 08 
+## Week 08
 
 Mid-term
 
@@ -207,6 +207,7 @@ Mid-term
 1. [WK09EX02 Object Oriented Programming: Blackjack](./exercises/wk09_ex02_blackjack/README.md)
 
 ### Lab
+
 1. wk09lab01: Network Host:
    1. [ Set A wk09lab01](https://classroom.github.com/a/KM6dGwEJ)
    1. [ Set B wk09lab01](https://classroom.github.com/a/A_f4Omlq)
@@ -228,3 +229,14 @@ Mid-term
 #### Exercies
 
 1. [wk10_ex01_shapes](/exercises/wk10_ex01_shapes/README.md)
+1. [wk10_ex02: Warlord's Siege](/exercises/wk10_ex02_fantasy_game.md)
+
+#### Lab
+
+1. [wk10_lab01 Warlords Siege](/labs/wk10_lab01_warlords_siege.md) 
+   
+   Starter and Submissions Repos:
+
+   1. Set A: https://classroom.github.com/a/GXYPf8Q7
+   1. Set B: https://classroom.github.com/a/zdYHanJY
+   1. Set C: https://classroom.github.com/a/Ih8N1nWz
