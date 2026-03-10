@@ -217,3 +217,14 @@ Mid-term
 1. [Iheritence and Composition: A Python OOP Guide](https://realpython.com/inheritance-composition-python/)
 1. [Pytest Fixtures: Monkeypatch](https://learning.oreilly.com/library/view/python-testing-with/9781680509427/f_0047.xhtml#ch.builtin_fixtures)
 
+## Week 10
+
+## Inheritence, ABC
+
+### Notes
+
+1. [Inheritence, Abstract Base Classes](./notes/100_oo_inheritence_abc.md)
+
+#### Exercies
+
+1. [wk10_ex01_shapes](/exercises/wk10_ex01_shapes/README.md)
