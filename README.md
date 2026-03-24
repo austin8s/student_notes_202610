@@ -285,4 +285,4 @@ This is the project that you will be working on for the duration of the course.
 
 1. Set A: https://classroom.github.com/a/5oRNAnDv
 1. Set B: https://classroom.github.com/a/1WY4wnJL
-1. Set C: https://classroom.github.com/a/hC37POJ_
+1. Set C: [https://classroom.github.com/a/hC37POJ_](https://classroom.github.com/a/hC37POJ_)
