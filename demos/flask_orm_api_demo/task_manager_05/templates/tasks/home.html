@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h2>{% block title %}Home{% endblock title %}</h2>
+{% endblock header %}
+
+{% block content %}
+<p>
+  Welcome to task manager 05! View all tasks on the <a href="{{ url_for('tasks.task_list') }}">Tasks page</a> or learn
+  more on the <a href="{{ url_for('tasks.about') }}">About page</a>.
+</p>
+{% endblock content %}

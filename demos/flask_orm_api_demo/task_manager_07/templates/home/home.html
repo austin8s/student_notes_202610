@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Task Manager 07 - CRUD Operations</h1>
+
+<h2>Statistics</h2>
+<ul>
+    <li>Total Users: {{ total_users }}</li>
+    <li>Total Tasks: {{ total_tasks }}</li>
+    <li>Completed Tasks: {{ completed_tasks }}</li>
+    <li>Pending Tasks: {{ pending_tasks }}</li>
+    <li>Total Tags: {{ total_tags }}</li>
+</ul>
+
+<h2>Quick Actions</h2>
+<a href="{{ url_for('users.create_user') }}" class="btn">Create User</a>
+<a href="{{ url_for('tasks.create_task') }}" class="btn">Create Task</a>
+<a href="{{ url_for('tags.create_tag') }}" class="btn">Create Tag</a>
+{% endblock %}

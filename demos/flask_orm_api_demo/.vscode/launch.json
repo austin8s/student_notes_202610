@@ -1,0 +1,163 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+   {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+   {
+      "name": "Flask CLI: task_manager_00",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "task_manager_00",
+        "FLASK_DEBUG": "1"
+      },
+      "args": ["run", "--host=localhost", "--port=8080"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Flask CLI: task_manager_01",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "task_manager_01",
+        "FLASK_DEBUG": "1"
+      },
+      "args": ["run", "--host=localhost", "--port=8080"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Flask CLI: task_manager_02",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "task_manager_02",
+        "FLASK_DEBUG": "1"
+      },
+      "args": ["run", "--host=localhost", "--port=8080"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Flask CLI: task_manager_03",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "task_manager_03",
+        "FLASK_DEBUG": "1"
+      },
+      "args": ["run", "--host=localhost", "--port=8080"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Flask CLI: task_manager_04",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "task_manager_04",
+        "FLASK_DEBUG": "1"
+      },
+      "args": ["run", "--host=localhost", "--port=8080"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Run: task_manager_04",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_04.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Run: task_manager_05",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_05.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Flask CLI: task_manager_05",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "task_manager_05",
+        "FLASK_DEBUG": "1"
+      },
+      "args": ["run", "--host=localhost", "--port=8080"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Run: task_manager_06",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_06.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Flask CLI: task_manager_06",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "task_manager_06",
+        "FLASK_DEBUG": "1"
+      },
+      "args": ["run", "--host=localhost", "--port=8080"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Run: task_manager_07",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_07.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    },
+    {
+      "name": "Flask CLI: task_manager_07",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "task_manager_07",
+        "FLASK_DEBUG": "1"
+      },
+      "args": ["run", "--host=localhost", "--port=8080"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "jinja": true
+    }
+  ]
+}

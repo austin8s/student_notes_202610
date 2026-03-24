@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Task{% endblock %}
+
+{% block content %}
+<h1>Edit Task: {{ task.title }}</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ task.title }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="details">Details:</label>
+        <textarea id="details" name="details">{{ task.details }}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="assignee_id">Assign to:</label>
+        <select id="assignee_id" name="assignee_id" required>
+            {% for user in users %}
+            <option value="{{ user.id }}" {% if user.id == task.assignee_id %}selected{% endif %}>
+                {{ user.username }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Tags:</label>
+        {% for tag in tags %}
+        <div>
+            <input type="checkbox" id="tag_{{ tag.id }}" name="tag_ids" value="{{ tag.id }}"
+                   {% if tag.id in task_tag_ids %}checked{% endif %}>
+            <label for="tag_{{ tag.id }}">{{ tag.name }}</label>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <input type="checkbox" id="is_done" name="is_done" {% if task.is_done %}checked{% endif %}>
+        <label for="is_done">Mark as completed</label>
+    </div>
+
+    <button type="submit" class="btn">Update Task</button>
+    <a href="{{ url_for('tasks.task_detail', task_id=task.id) }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

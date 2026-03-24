@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Pending Tasks - Task Manager{% endblock %}
+
+{% block content %}
+<h1>Pending Tasks</h1>
+
+{% if tasks %}
+<ul class="task-list">
+  {% for task in tasks %}
+  <li>
+    <h3>
+      <a href="{{ url_for('tasks.task_detail', task_id=task.id) }}">{{ task.title }}</a>
+      <span class="status pending">○ Pending</span>
+    </h3>
+    <p>{{ task.details[:100] }}{% if task.details|length > 100 %}...{% endif %}</p>
+    <p>
+      <strong>Assigned to:</strong> 
+      <a href="{{ url_for('users.user_detail', user_id=task.assignee.id) }}">{{ task.assignee.username }}</a>
+    </p>
+    <p>
+      <strong>Tags:</strong>
+      {% for tag in task.get_tags() %}
+        <a href="{{ url_for('tags.tag_detail', tag_id=tag.id) }}" class="tag">{{ tag.name }}</a>
+      {% endfor %}
+    </p>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No pending tasks! 🎉</p>
+{% endif %}
+
+<p><a href="{{ url_for('tasks.list_tasks') }}">← Back to all tasks</a></p>
+{% endblock %}

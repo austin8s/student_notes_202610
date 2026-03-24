@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+<h1>{{ user.username }}</h1>
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Total Tasks:</strong> {{ user.tasks|list|length }}</p>
+
+<a href="{{ url_for('users.edit_user', user_id=user.id) }}" class="btn">Edit User</a>
+<form method="POST" action="{{ url_for('users.delete_user', user_id=user.id) }}" 
+      style="display:inline;" 
+      onsubmit="return confirm('Delete user and all their tasks?');">
+    <button type="submit" class="btn btn-danger">Delete User</button>
+</form>
+
+<h2>Active Tasks ({{ active_tasks|length }})</h2>
+{% if active_tasks %}
+<ul>
+    {% for task in active_tasks %}
+    <li>
+        {{ task.title }}
+        <a href="{{ url_for('tasks.task_detail', task_id=task.id) }}">View</a>
+        <form method="POST" action="{{ url_for('tasks.toggle_task', task_id=task.id) }}" style="display:inline;">
+            <button type="submit" class="btn btn-secondary">Mark Done</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No active tasks</p>
+{% endif %}
+
+<h2>Completed Tasks ({{ completed_tasks|length }})</h2>
+{% if completed_tasks %}
+<ul>
+    {% for task in completed_tasks %}
+    <li class="task-done">{{ task.title }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No completed tasks</p>
+{% endif %}
+{% endblock %}

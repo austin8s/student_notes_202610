@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Tag: {{ tag.name }} - Task Manager{% endblock %}
+
+{% block content %}
+<h1>Tag: <span class="tag">{{ tag.name }}</span></h1>
+
+<p><strong>Tasks with this tag:</strong> {{ tag.get_tasks()|list|length }}</p>
+
+<h2>Tasks</h2>
+
+{% if tag.get_tasks() %}
+<ul class="task-list">
+  {% for task in tag.get_tasks() %}
+  <li {% if task.is_done %}class="completed"{% endif %}>
+    <h3>
+      <a href="{{ url_for('tasks.task_detail', task_id=task.id) }}">{{ task.title }}</a>
+      <span class="status {% if task.is_done %}done{% else %}pending{% endif %}">
+        {% if task.is_done %}✓ Completed{% else %}○ Pending{% endif %}
+      </span>
+    </h3>
+    <p>{{ task.details[:100] }}{% if task.details|length > 100 %}...{% endif %}</p>
+    <p>
+      <strong>Assigned to:</strong> 
+      <a href="{{ url_for('users.user_detail', user_id=task.assignee.id) }}">{{ task.assignee.username }}</a>
+    </p>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No tasks with this tag.</p>
+{% endif %}
+
+<p><a href="{{ url_for('tags.list_tags') }}">← Back to tags</a></p>
+{% endblock %}

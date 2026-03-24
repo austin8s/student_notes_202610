@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ task.title }}</h1>
+
+<p><strong>Assigned to:</strong> 
+   <a href="{{ url_for('users.user_detail', user_id=task.assignee.id) }}">{{ task.assignee.username }}</a>
+</p>
+<p><strong>Status:</strong> {{ 'Completed' if task.is_done else 'Pending' }}</p>
+<p><strong>Details:</strong> {{ task.details or 'No details' }}</p>
+<p><strong>Tags:</strong> 
+    {% for tag in task.get_tags() %}
+    <span class="tag">{{ tag.name }}</span>
+    {% endfor %}
+</p>
+
+<a href="{{ url_for('tasks.edit_task', task_id=task.id) }}" class="btn">Edit Task</a>
+<form method="POST" action="{{ url_for('tasks.toggle_task', task_id=task.id) }}" style="display:inline;">
+    <button type="submit" class="btn btn-secondary">
+        Mark as {{ 'Pending' if task.is_done else 'Done' }}
+    </button>
+</form>
+<form method="POST" action="{{ url_for('tasks.delete_task', task_id=task.id) }}" 
+      style="display:inline;" 
+      onsubmit="return confirm('Delete this task?');">
+    <button type="submit" class="btn btn-danger">Delete Task</button>
+</form>
+{% endblock %}
