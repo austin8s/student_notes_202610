@@ -222,21 +222,67 @@ Mid-term
 
 ### Inheritance, ABC
 
-### Notes
+#### Notes
 
 1. [Inheritence, Abstract Base Classes](./notes/100_oo_inheritence_abc.md)
 
-#### Exercise
+##### Exercise
 
 1. [wk10_ex01_shapes](/exercises/wk10_ex01_shapes/README.md)
 1. [wk10_ex02: Warlord's Siege](/exercises/wk10_ex02_fantasy_game.md)
 
-#### Lab
+##### Lab
 
-1. [wk10_lab01 Warlords Siege](/labs/wk10_lab01_warlords_siege.md) 
-   
+1. [wk10_lab01 Warlords Siege](/labs/wk10_lab01_warlords_siege.md)
+
    Starter and Submissions Repos:
-
    1. Set A: https://classroom.github.com/a/GXYPf8Q7
    1. Set B: https://classroom.github.com/a/zdYHanJY
    1. Set C: https://classroom.github.com/a/Ih8N1nWz
+
+## Week 11
+
+Reading Week
+
+## Week 12
+
+### Demonstration Flask App
+
+The following is a demo of a Flask app that you can reference throughout the
+remainder of the course:
+
+[Flask ORM API Demo](/demos/flask_orm_api_demo/)
+
+### HTTP and WSGI
+
+#### Notes
+
+1. [HTTP Review](/notes/110_http_review.md)
+1. [WSGI](/notes/111_wsgi_overview.md)
+
+#### Exercises
+
+1. [wk11_ex01: Bruno, REST API's](/exercises/wk11_ex01_bruno_rest_api/bruno_rest_api_exercise.md)
+
+### Flask
+
+#### Notes
+
+1. [Flask Introduction](/notes/112_flask_intro.md)
+
+### Exercises
+
+1. [wk11_ex02: Flask Introduction](/exercises/wk11_ex02_intro_flask_exercise.md)
+
+## Project
+
+This is the project that you will be working on for the duration of the course.
+
+1. [Project: Server Fleet Monitor Overview](/project/project_server_fleet_monitor_overview.md)
+1. [Project: Part 1 - Server Fleet Monitor Agent](/project/project_server_fleet_monitor_agent.md)
+
+### Per Set Project Part 1 Repositories
+
+1. Set A: https://classroom.github.com/a/5oRNAnDv
+1. Set B: https://classroom.github.com/a/1WY4wnJL
+1. Set C: [https://classroom.github.com/a/hC37POJ_](https://classroom.github.com/a/hC37POJ_)

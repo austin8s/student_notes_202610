@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h2>{% block title %}All Tasks{% endblock title %}</h2>
+{% endblock header %}
+
+{% block content %}
+<ol>
+  {% for task in tasks %}
+  <li>
+    <ul>
+      <li><strong>Title:</strong> {{ task["title"] }}</li>
+      <li><strong>Status:</strong> {% if task["is_done"] %}✓ Completed{% else %}○ Pending{% endif %}</li>
+      <li><strong>Assignee:</strong> {{ task["assignee"] }}</li>
+      <li><strong>Tags:</strong> {{ task["tags"] | join(', ') }}</li>
+      <p><strong>Details:</strong> {{ task["details"] }}</p>
+    </ul>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock content %}

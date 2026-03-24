@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Task Manager{% endblock %}
+
+{% block content %}
+<h1>Task Manager 06 - Relational Database</h1>
+
+<p>This application demonstrates a normalized relational database design with:</p>
+
+<ul>
+  <li><strong>Users</strong> - People who create and are assigned tasks</li>
+  <li><strong>Tasks</strong> - Todo items with status and details</li>
+  <li><strong>Tags</strong> - Categories for organizing tasks</li>
+</ul>
+
+<h2>Database Relationships</h2>
+<ul>
+  <li><strong>User → Tasks</strong>: One-to-many (one user can have many tasks)</li>
+  <li><strong>Tasks ↔ Tags</strong>: Many-to-many (tasks can have multiple tags, tags can be on multiple tasks)</li>
+</ul>
+
+<h2>Quick Links</h2>
+<ul>
+  <li><a href="{{ url_for('users.list_users') }}">View all users</a></li>
+  <li><a href="{{ url_for('tasks.list_tasks') }}">View all tasks</a></li>
+  <li><a href="{{ url_for('tasks.pending_tasks') }}">View pending tasks</a></li>
+  <li><a href="{{ url_for('tags.list_tags') }}">View all tags</a></li>
+</ul>
+{% endblock %}

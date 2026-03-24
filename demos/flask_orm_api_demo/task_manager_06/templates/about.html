@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}About - Task Manager{% endblock %}
+
+{% block content %}
+<h1>About This Application</h1>
+
+<p>Task Manager demonstrates relational database design using Peewee ORM.</p>
+
+<h2>Database Schema</h2>
+
+<h3>Tables</h3>
+<ul>
+  <li><strong>user</strong> - User accounts</li>
+  <li><strong>task</strong> - Todo items</li>
+  <li><strong>tag</strong> - Task categories</li>
+  <li><strong>task_tag</strong> - Association table (many-to-many)</li>
+</ul>
+
+<h3>Relationships</h3>
+<ul>
+  <li><strong>User.tasks</strong> - List of tasks assigned to user</li>
+  <li><strong>Task.assignee</strong> - User who owns the task</li>
+  <li><strong>Task.get_tags()</strong> - Tags associated with task</li>
+  <li><strong>Tag.get_tasks()</strong> - Tasks with this tag</li>
+</ul>
+
+{% endblock %}

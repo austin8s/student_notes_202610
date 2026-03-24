@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Task{% endblock %}
+
+{% block content %}
+<h1>Create New Task</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+
+    <div class="form-group">
+        <label for="details">Details:</label>
+        <textarea id="details" name="details"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="assignee_id">Assign to:</label>
+        <select id="assignee_id" name="assignee_id" required>
+            <option value="">Select user...</option>
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Tags:</label>
+        {% for tag in tags %}
+        <div>
+            <input type="checkbox" id="tag_{{ tag.id }}" name="tag_ids" value="{{ tag.id }}">
+            <label for="tag_{{ tag.id }}">{{ tag.name }}</label>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn">Create Task</button>
+    <a href="{{ url_for('tasks.tasks') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

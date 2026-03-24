@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Tags{% endblock %}
+
+{% block content %}
+<h1>All Tags ({{ tags|length }})</h1>
+
+<a href="{{ url_for('tags.create_tag') }}" class="btn">Create New Tag</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tag Name</th>
+            <th>Tasks</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tag in tags %}
+        <tr>
+            <td><span class="tag">{{ tag.name }}</span></td>
+            <td>{{ tag.get_tasks()|list|length }}</td>
+            <td>
+                <a href="{{ url_for('tags.tag_detail', tag_id=tag.id) }}" class="btn">View</a>
+                <a href="{{ url_for('tags.edit_tag', tag_id=tag.id) }}" class="btn">Edit</a>
+                <form method="POST" action="{{ url_for('tags.delete_tag', tag_id=tag.id) }}" 
+                      style="display:inline;" 
+                      onsubmit="return confirm('Delete this tag?');">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

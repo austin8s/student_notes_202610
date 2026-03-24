@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ task.title }} - Task Manager{% endblock %}
+
+{% block content %}
+<h1>{{ task.title }}</h1>
+
+<p><span class="status {% if task.is_done %}done{% else %}pending{% endif %}">
+  {% if task.is_done %}✓ Completed{% else %}○ Pending{% endif %}
+</span></p>
+
+<h2>Details</h2>
+<p>{{ task.details }}</p>
+
+<h2>Assignment</h2>
+<p><strong>Assigned to:</strong> 
+  <a href="{{ url_for('users.user_detail', user_id=task.assignee.id) }}">{{ task.assignee.username }}</a>
+  ({{ task.assignee.email }})
+</p>
+
+<h2>Tags</h2>
+{% if task.get_tags() %}
+<p>
+  {% for tag in task.get_tags() %}
+    <a href="{{ url_for('tags.tag_detail', tag_id=tag.id) }}" class="tag">{{ tag.name }}</a>
+  {% endfor %}
+</p>
+{% else %}
+<p>No tags.</p>
+{% endif %}
+
+<h2>Metadata</h2>
+<p><strong>Created:</strong> {{ task.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+
+<p><a href="{{ url_for('tasks.list_tasks') }}">← Back to all tasks</a></p>
+{% endblock %}

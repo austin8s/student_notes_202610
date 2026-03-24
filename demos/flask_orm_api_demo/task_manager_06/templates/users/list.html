@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Users - Task Manager{% endblock %}
+
+{% block content %}
+<h1>All Users</h1>
+
+<ul class="user-list">
+  {% for user in users %}
+  <li>
+    <h3><a href="{{ url_for('users.user_detail', user_id=user.id) }}">{{ user.username }}</a></h3>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Tasks:</strong> {{ user.tasks|list|length }}</p>
+    <p><strong>Member since:</strong> {{ user.created_at.strftime('%Y-%m-%d') }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
