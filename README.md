@@ -308,6 +308,8 @@ This is the project that you will be working on for the duration of the course.
 
 1. [Project: Server Fleet Monitor Overview](/project/project_server_fleet_monitor_overview.md)
 1. [Project: Part 1 - Server Fleet Monitor Agent](/project/project_server_fleet_monitor_agent.md)
+1. [Project: Part 2 - Server Fleet Poller and Aggregator ](/project/project_server_fleet_monitor_poller_aggregator.md)
+   1. [Project: Part 2 Supplied Code](/project/fleet_monitor_aggregator_starter/)
 
 ### Per Set Project Part 1 Repositories
 
