@@ -274,19 +274,6 @@ remainder of the course:
 
 1. [wk11_ex02: Flask Introduction](/exercises/wk11_ex02_intro_flask_exercise.md)
 
-## Project
-
-This is the project that you will be working on for the duration of the course.
-
-1. [Project: Server Fleet Monitor Overview](/project/project_server_fleet_monitor_overview.md)
-1. [Project: Part 1 - Server Fleet Monitor Agent](/project/project_server_fleet_monitor_agent.md)
-
-### Per Set Project Part 1 Repositories
-
-1. Set A: https://classroom.github.com/a/5oRNAnDv
-1. Set B: https://classroom.github.com/a/1WY4wnJL
-1. Set C: [https://classroom.github.com/a/hC37POJ_](https://classroom.github.com/a/hC37POJ_)
-
 ## Week 13
 
 ### HTTP Clients
@@ -313,3 +300,18 @@ This is the project that you will be working on for the duration of the course.
 #### Exercises
 
 1. [wk12_ex02_simple_orm](/exercises/wk12_ex02_simple_orm_exercise.md)
+
+
+## Project
+
+This is the project that you will be working on for the duration of the course.
+
+1. [Project: Server Fleet Monitor Overview](/project/project_server_fleet_monitor_overview.md)
+1. [Project: Part 1 - Server Fleet Monitor Agent](/project/project_server_fleet_monitor_agent.md)
+
+### Per Set Project Part 1 Repositories
+
+1. Set A: https://classroom.github.com/a/5oRNAnDv
+1. Set B: https://classroom.github.com/a/1WY4wnJL
+1. Set C: [https://classroom.github.com/a/hC37POJ_](https://classroom.github.com/a/hC37POJ_)
+
