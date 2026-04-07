@@ -331,4 +331,8 @@ This is the project that you will be working on for the duration of the course.
 1. Set B: https://classroom.github.com/a/1WY4wnJL
 1. Set C: [https://classroom.github.com/a/hC37POJ_](https://classroom.github.com/a/hC37POJ_)
 
-### Per Set Project Part 1 Repositories
+### Per Set Project Part 3 Repositories
+
+1. Set A: https://classroom.github.com/a/5Ida6mmM
+1. Set B: https://classroom.github.com/a/_K5xHbVv
+1. Set C: https://classroom.github.com/a/bR_8lpma
