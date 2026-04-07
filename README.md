@@ -274,15 +274,65 @@ remainder of the course:
 
 1. [wk11_ex02: Flask Introduction](/exercises/wk11_ex02_intro_flask_exercise.md)
 
+## Week 13
+
+### HTTP Clients
+
+#### Notes
+
+1. [HTTP Python Clients using HTTPX](/notes/120_httpx_python_http_clients.md)
+
+#### Exercise
+
+1. [wk12_ex01_simple_http_client](/exercises/wk12_ex01_simple_http_client/simple_http_client_exercise.md)
+
+### ORM
+
+#### Demo
+
+1. [Simple ORM Demo: Flask and Peewee](/demos/simple_orm_demo/README.md)
+
+#### Notes
+
+1. [Flask ORM](/notes/121_flask_orm.md)
+1. [Flask Application Lifecycle and Contexts](/notes/122_flask_application_lifecycle_contexts.md)
+
+#### Exercises
+
+1. [wk12_ex02_simple_orm](/exercises/wk12_ex02_simple_orm_exercise.md)
+
+
+## Week 14
+
+### GUI's and Text User Interfaces
+
+#### Demo
+
+1. [Basic TUI with Textualize](demos/tui_demo_inventory_app/)
+1. [TUI Monitor](demos/tui_monitor/)
+
+#### Notes
+
+1.[GUI's and Textual Library](/notes/130_gui_textual.md)
+
 ## Project
 
 This is the project that you will be working on for the duration of the course.
 
 1. [Project: Server Fleet Monitor Overview](/project/project_server_fleet_monitor_overview.md)
 1. [Project: Part 1 - Server Fleet Monitor Agent](/project/project_server_fleet_monitor_agent.md)
+1. [Project: Part 2 - Server Fleet Poller and Aggregator ](/project/project_server_fleet_monitor_poller_aggregator.md)
+   1. [Project: Part 2 Supplied Code](/project/fleet_monitor_aggregator_starter/)
+1. [Project: Part 3 - Server Fleet Dashboard](project/project_server_fleet_monitor_dashboard.md)
 
 ### Per Set Project Part 1 Repositories
 
 1. Set A: https://classroom.github.com/a/5oRNAnDv
 1. Set B: https://classroom.github.com/a/1WY4wnJL
 1. Set C: [https://classroom.github.com/a/hC37POJ_](https://classroom.github.com/a/hC37POJ_)
+
+### Per Set Project Part 3 Repositories
+
+1. Set A: https://classroom.github.com/a/5Ida6mmM
+1. Set B: https://classroom.github.com/a/_K5xHbVv
+1. Set C: https://classroom.github.com/a/bR_8lpma

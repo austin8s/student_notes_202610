@@ -1,0 +1,25 @@
+/* System Monitor — Textual CSS */
+
+#top-pane {
+    height: 1fr;
+}
+
+#sys-table {
+    width: 1fr;
+}
+
+#detail-panel {
+    width: 1fr;
+    border: solid $accent;
+    padding: 1 2;
+}
+
+#specifics-table {
+    height: 1fr;
+    border-top: solid $accent;
+}
+
+#refresh-info {
+    height: 1;
+    dock: bottom;
+}

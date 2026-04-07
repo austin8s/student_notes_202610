@@ -1,0 +1,9 @@
+[project]
+name = "simple-http-client"
+version = "0.1.0"
+description = "Exercise: Building an HTTP Client with httpx"
+requires-python = ">=3.13"
+dependencies = [
+    "flask>=3.1.0",
+    "httpx>=0.28.0",
+]
