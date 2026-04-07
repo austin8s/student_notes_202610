@@ -7,7 +7,7 @@ tool that IT operations teams use every day to watch over fleets of servers in
 data centres and the cloud. Products like Prometheus, Datadog, Zabbix, and
 Netdata all follow the pattern you'll implement here.
 
-The system has four main components, each built in a separate part of the
+The system has three main components, each built in a separate part of the
 project:
 
 1. **Agent** — collects real metrics (CPU, memory, disk, network) from the
@@ -15,8 +15,6 @@ project:
 2. **Aggregation Server + Poller** — stores a history of metrics from all
    servers in a database and provides a fleet-wide REST API
 3. **Dashboard** — a terminal UI that displays a live, colour-coded fleet view
-4. **Server Type Refactoring** — an OOP class hierarchy that categorizes servers
-   (web, database, router) and propagates that information through every layer
 
 You develop the system **bottom-up**, starting from a single server's
 perspective and expanding outward — the same order real monitoring systems are
@@ -71,6 +69,27 @@ flowchart LR
 
 All components run on **your machine** (localhost) in separate terminal windows.
 
+### Registering servers
+
+The dashboard displays servers that have been **registered** with the
+aggregation server. Registration is done manually via the Part 2 REST API —
+there is no built-in UI for adding servers (that would be a nice enhancement,
+but is out of scope for this project).
+
+To register your own agent so the poller and dashboard can see it, send a POST
+request using Bruno, curl, or any HTTP client while the aggregation server is
+running:
+
+```powershell
+curl -X POST http://localhost:5001/fleet/servers `
+     -H "Content-Type: application/json" `
+     -d '{"hostname": "my-laptop", "agent_url": "http://127.0.0.1:5000"}'
+```
+
+The `agent_url` is the base URL where your Part 1 agent is running. Once
+registered, the poller will begin collecting metrics from that agent on its
+next cycle, and the dashboard will show the new host after a refresh (`r`).
+
 ### Full system at runtime
 
 ```mermaid
@@ -94,7 +113,7 @@ flowchart TD
         end
 
         subgraph t4 ["Terminal 4 — Dashboard"]
-            dash["dashboard.py\nTextual TUI"]
+            dash["app.py\nTextual TUI"]
         end
 
         poller -- "HTTP GET /api/metrics" --> agent
@@ -203,15 +222,13 @@ flowchart LR
 ```mermaid
 erDiagram
     ServerRecord ||--o{ MetricsSnapshot : "has many"
-    MetricsSnapshot ||--o{ DiskRecord : "has many"
-    MetricsSnapshot ||--o{ NetworkRecord : "has many"
 
     ServerRecord {
         int id PK
-        str hostname
-        str ip_address
-        str agent_url
-        str status
+        string hostname
+        string agent_url
+        string status
+        datetime created_at
     }
     MetricsSnapshot {
         int id PK
@@ -221,22 +238,8 @@ erDiagram
         float cpu_percent
         bigint memory_total
         bigint memory_used
-    }
-    DiskRecord {
-        int id PK
-        int snapshot_id FK
-        str device
-        bigint total
-        bigint used
-        bigint free
-    }
-    NetworkRecord {
-        int id PK
-        int snapshot_id FK
-        str name
-        text ips
-        bigint bytes_sent
-        bigint bytes_recv
+        string os_type
+        string os_version
     }
 ```
 
@@ -256,29 +259,35 @@ erDiagram
 **Goal:** Build a terminal user interface (TUI) that queries the aggregation
 server and displays a live, colour-coded view of the entire fleet.
 
-The dashboard reads from the aggregation server's `GET /fleet` endpoint and
-renders the data in a table. Keyboard shortcuts let you trigger a poll or
-refresh the display without leaving the terminal.
+The dashboard reads from the aggregation server's `GET /fleet` endpoints and
+renders the data in a multi-panel layout. A host table lists all servers with
+colour-coded status; selecting a host shows its latest metrics in a detail panel
+and its full metrics history in a second table. Keyboard shortcuts let you
+trigger a poll or refresh the display without leaving the terminal.
 
 ### What you'll learn
 
 - Building a TUI application with **Textual**
-- Populating a `DataTable` widget from a REST API response
+- Populating `DataTable` widgets from REST API responses
+- Using containers (`Horizontal`, `VerticalScroll`) to create a multi-panel layout
 - Handling keyboard input with **key bindings** and actions
+- Responding to `DataTable` events (`RowSelected`, `RowHighlighted`)
 - Colour-coding cells based on metric thresholds (e.g. CPU usage)
+- Using `get_row()` to extract cell data from a selected row
 
 ### Dashboard layout
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│  Fleet Monitor                                        Header    │
-├──────────────────────────────────────────────────────────────────┤
-│  Host           │ Status │ CPU % │ Mem % │ Disks │ NICs │ Seen  │
-│  web-01.bcit.ca │ online │  14.3 │  48.0 │     1 │    2 │ 14:22 │
-│  db-01.bcit.ca  │ online │   8.7 │  74.5 │     2 │    1 │ 14:22 │
-├──────────────────────────────────────────────────────────────────┤
-│  P: Poll now   R: Refresh   Q: Quit                  Footer    │
-└──────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│ Header                                                      │
+├──────────────────────────┬──────────────────────────────────┤
+│ Host List (DataTable)    │ Host Detail (Static panel)       │
+│  select a host →         │  hostname, status, latest metrics│
+├──────────────────────────┴──────────────────────────────────┤
+│ Metrics History (DataTable) for selected host               │
+├─────────────────────────────────────────────────────────────┤
+│ Footer (key bindings)                                       │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### Technologies
@@ -290,87 +299,21 @@ refresh the display without leaving the terminal.
 
 ---
 
-## Part 4 — Server Type Refactoring
-
-**Goal:** Design a Python class hierarchy that models different kinds of servers
-(web server, database server, router) and refactor every prior component to
-support server types.
-
-This part is about **refactoring** — you go back into code you've already
-written and extend it. You'll add a `server_type` column to the database, update
-the registration API, modify the poller, and add a Type column to the dashboard.
-
-### What you'll learn
-
-- Designing an OOP class hierarchy with **inheritance** and `super()`
-- Overriding methods (`describe()`, `to_dict()`) in subclasses
-- Adding columns to an existing database schema
-- **Refactoring** working code to accommodate new requirements — the most common
-  real-world engineering task
-
-### Class hierarchy
-
-```mermaid
-classDiagram
-    class Server {
-        +str hostname
-        +str ip_address
-        +str os_version
-        +str status
-        +__str__()
-        +describe()
-        +to_dict()
-    }
-    class WebServer {
-        +int port
-        +bool is_ssl_enabled
-        +describe()
-        +to_dict()
-    }
-    class DatabaseServer {
-        +str db_engine
-        +int storage_gb
-        +describe()
-        +to_dict()
-    }
-    class RouterServer {
-        +str routing_protocol
-        +int num_ports
-        +describe()
-        +to_dict()
-    }
-    Server <|-- WebServer
-    Server <|-- DatabaseServer
-    Server <|-- RouterServer
-```
-
-### Technologies
-
-| Technology     | Purpose                                   |
-| -------------- | ----------------------------------------- |
-| **Python OOP** | Inheritance, `super()`, method overriding |
-| **Peewee**     | Schema migration (adding a column)        |
-| **Flask**      | Updating API endpoints                    |
-| **Textual**    | Updating dashboard display                |
-
----
-
 ## Technology summary
 
-The project uses the following technologies across all four parts:
+The project uses the following technologies across all three parts:
 
 | Technology             | Parts | Role                               |
 | ---------------------- | ----- | ---------------------------------- |
 | **Python 3.14+**       | All   | Core language                      |
 | **Flask**              | 1, 2  | REST API framework                 |
 | **psutil**             | 1     | System metrics collection          |
-| **Peewee**             | 2, 4  | ORM for SQLite database            |
+| **Peewee**             | 2     | ORM for SQLite database            |
 | **SQLite**             | 2     | Lightweight relational database    |
 | **httpx**              | 2, 3  | HTTP client                        |
 | **Textual**            | 3     | Terminal UI framework              |
 | **pytest**             | 1     | Automated testing                  |
 | **Python dataclasses** | 1     | Structured data with serialization |
-| **Python OOP**         | 4     | Class hierarchy and inheritance    |
 
 ---
 
@@ -381,19 +324,16 @@ flowchart LR
     p1["Part 1\nAgent API\n(Flask + psutil)"]
     p2["Part 2\nAggregation + Poller\n(Flask + Peewee + httpx)"]
     p3["Part 3\nDashboard\n(Textual)"]
-    p4["Part 4\nServer Types\n(OOP refactoring)"]
 
-    p1 --> p2 --> p3 --> p4
+    p1 --> p2 --> p3
 
     style p1 fill:#e1f5fe
     style p2 fill:#fff3e0
     style p3 fill:#e8f5e9
-    style p4 fill:#fce4ec
 ```
 
 Each part builds on the previous one. By the end you'll have a complete
-monitoring pipeline: data collection → storage → visualization — with a clean
-OOP model tying it all together.
+monitoring pipeline: data collection → storage → visualization.
 
 ---
 
@@ -401,23 +341,14 @@ OOP model tying it all together.
 
 | Part                                 | Weight | Focus                                           |
 | ------------------------------------ | ------ | ----------------------------------------------- |
-| Part 1 — Agent                       | 30 %   | Building a REST API                             |
-| Part 2 — Aggregation Server + Poller | 30 %   | ORM data persistence and API consumption        |
-| Part 3 — Dashboard                   | 30 %   | Consuming a REST API from a TUI                 |
-| Part 4 — Server Type Refactoring     | 10 %   | OOP inheritance and cross-component refactoring |
+| Part 1 — Agent                       | 40 %   | Building a REST API                             |
+| Part 2 — Aggregation Server + Poller | 40 %   | ORM data persistence and API consumption        |
+| Part 3 — Dashboard                   | 20 %   | Consuming a REST API from a TUI                 |
 
 The **key learning outcomes** of this project are REST API creation, REST API
 consumption, and ORM-based data persistence. Parts 1 and 2 cover these core
 skills and together represent the majority of the grade.
 
 The dashboard (Part 3) is important but secondary — it demonstrates that you can
-consume the APIs you built, but the TUI framework itself is not a primary
+consume the APIs you built, and the TUI framework itself is a secondary
 learning objective.
-
-Part 4 is a **differentiator**. It is not expected that all students will
-complete it. Students who do will demonstrate the ability to refactor working
-code across multiple components to accommodate new requirements — a valuable
-real-world skill.
-
-The detailed grading rubric for each part is provided in its respective
-specification document.

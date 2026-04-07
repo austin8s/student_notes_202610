@@ -1,0 +1,9 @@
+[project]
+name = "demo-inventory-app"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.14"
+dependencies = [
+    "textual>=8.2.1",
+    "textual-dev>=1.8.0",
+]
